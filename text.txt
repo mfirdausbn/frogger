@@ -21,3 +21,5 @@ give cars div dark gray colour for the road
 JS
 create and assign all important variables
 create function to move the frog
+create function to move the logs
+create function to move the cars

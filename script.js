@@ -15,18 +15,30 @@ let currentIndex = 76; // this is 76 because this is the index of the starting b
 /////////////////////////////////////////////////////////////////////
 
 function moveFrog(event) {
+  //this line of code is to remove the previous position of frog otherwise it will look like a snake
+  squares[currentIndex].classList.remove("frog");
+
   switch (event.key) {
     case "ArrowLeft":
-      currentIndex--; //makes frog move left
+      if (currentIndex % 9 !== 0) {
+        //this if statement is to prevent the square from moving left at the left border
+        currentIndex--; //makes frog move left
+      }
       break;
     case "ArrowRight":
-      currentIndex++; //makes frog move left
+      if (currentIndex % 9 < 8) {
+        currentIndex++;
+      }
       break;
     case "ArrowUp":
-      currentIndex -= 9; //makes frog move left
+      if (currentIndex > 8) {
+        currentIndex -= 9;
+      }
       break;
     case "ArrowDown":
-      currentIndex += 9; //makes frog move left
+      if (currentIndex < 72) {
+        currentIndex += 9;
+      }
       break;
   }
   squares[currentIndex].classList.add("frog"); // makes the frog appear at the starting block
