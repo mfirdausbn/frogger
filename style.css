@@ -15,10 +15,17 @@
 
 
 
-.car-left,
-.car-right {
-  background-color: darkgray;
+.c1,
+.c4 {
+    background-color: darkgoldenrod;
 }
+
+.c2,
+.c3,
+.c5 {
+    background-color: darkgray;
+}
+
 
 .ending-block {
   background-color: red;
