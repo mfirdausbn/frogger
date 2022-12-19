@@ -3,8 +3,8 @@
 const squares = document.querySelectorAll(".grid div");
 const logsLeft = document.querySelectorAll(".log-left");
 const logsRight = document.querySelectorAll(".log-right");
-const carsLeft = document.querySelectorAll("car-left");
-const carsRight = document.querySelectorAll("car-right");
+const carsLeft = document.querySelectorAll(".car-left");
+const carsRight = document.querySelectorAll(".car-right");
 
 console.log(squares); //this gives a layout of the array of squares
 
@@ -117,7 +117,7 @@ function moveLogRight(logRight) {
   }
 }
 
-setInterval(autoMoveLogs, 500);
+setInterval(autoMoveLogs, 1000);
 
 ////////////////////////////////////////////////////////////////
 //CREATE FUNCTION FOR CARS TO MOVE
@@ -130,9 +130,9 @@ function autoMoveCars() {
 
 function moveCarLeft(carLeft) {
   switch (true) {
-    case carLeft.classList.contains("c1"): //check if that square contains l1
-      carLeft.classList.remove("c1"); //remove this l1 class
-      carLeft.classList.add("c2"); //add this l2 class
+    case carLeft.classList.contains("c1"):
+      carLeft.classList.remove("c1");
+      carLeft.classList.add("c2");
       break;
 
     case carLeft.classList.contains("c2"):
@@ -152,37 +152,45 @@ function moveCarLeft(carLeft) {
 
     case carLeft.classList.contains("c5"):
       carLeft.classList.remove("c5");
+      carLeft.classList.add("c6");
+      break;
+    case carLeft.classList.contains("c6"):
+      carLeft.classList.remove("c6");
       carLeft.classList.add("c1");
       break;
   }
 }
 
-//   function moveCarRight(carRight) {
-//     switch (true) {
-//       case carRight.classList.contains("c1"): //check if that square contains l1
-//         carRight.classList.remove("c1"); //remove this l1 class
-//         carRight.classList.add("c5"); //add this l5 class
-//         break;
+function moveCarRight(carRight) {
+  switch (true) {
+    case carRight.classList.contains("c1"): //check if that square contains l1
+      carRight.classList.remove("c1"); //remove this l1 class
+      carRight.classList.add("c6"); //add this l5 class
+      break;
 
-//       case carRight.classList.contains("c2"):
-//         carRight.classList.remove("c2");
-//         carRight.classList.add("c1");
-//         break;
+    case carRight.classList.contains("c2"):
+      carRight.classList.remove("c2");
+      carRight.classList.add("c1");
+      break;
 
-//       case carRight.classList.contains("c3"):
-//         carRight.classList.remove("c3");
-//         carRight.classList.add("c2");
-//         break;
+    case carRight.classList.contains("c3"):
+      carRight.classList.remove("c3");
+      carRight.classList.add("c2");
+      break;
 
-//       case carRight.classList.contains("c4"):
-//         carRight.classList.remove("c4");
-//         carRight.classList.add("c3");
-//         break;
+    case carRight.classList.contains("c4"):
+      carRight.classList.remove("c4");
+      carRight.classList.add("c3");
+      break;
 
-//       case carRight.classList.contains("c5"):
-//         carRight.classList.remove("c5");
-//         carRight.classList.add("c4");
-//         break;
-//     }
-//   }
-setInterval(autoMoveCars, 500);
+    case carRight.classList.contains("c5"):
+      carRight.classList.remove("c5");
+      carRight.classList.add("c4");
+      break;
+      case carRight.classList.contains("c6"):
+        carRight.classList.remove("c6");
+        carRight.classList.add("c5");
+        break;
+  }
+}
+setInterval(autoMoveCars, 1000);

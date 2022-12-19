@@ -15,14 +15,16 @@
 
 
 
-.c1,
-.c4 {
+.c1
+{
     background-color: darkgoldenrod;
 }
 
 .c2,
 .c3,
-.c5 {
+.c4,
+.c5,
+.c6 {
     background-color: darkgray;
 }
 
