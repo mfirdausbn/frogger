@@ -44,3 +44,46 @@ function moveFrog(event) {
   squares[currentIndex].classList.add("frog"); // makes the frog appear at the starting block
 }
 document.addEventListener("keyup", moveFrog);
+
+////////////////////////////////////////////////////////////////
+//CREATE FUNCTION TO MOVE LOGS
+////////////////////////////////////////////////////////////////
+//each log now has a class of l1 to l5. l1,l2 and l3, will have a brown colour
+// l4 and l5 will have a a blue back ground.
+// how the logs move is by "cycling" the classes from l1 to l5 so that it changes from brown to blue
+// giving the effect of it moving to the left when it changes from l3 to l4
+
+function autoMoveLogs() {
+  logsLeft.forEach((logleft) => moveLogLeft(logleft));
+}
+
+function moveLogLeft(logleft) {
+  switch (true) {
+    case logleft.classList.contains("l1"): //check if that square contains l1
+      logleft.classList.remove("l1"); //remove this l1 class
+      logleft.classList.add("l2"); //add this l2 class
+      break;
+
+    case logleft.classList.contains("l2"):
+      logleft.classList.remove("l2");
+      logleft.classList.add("l3");
+      break;
+
+    case logleft.classList.contains("l3"):
+      logleft.classList.remove("l3");
+      logleft.classList.add("l4");
+      break;
+
+    case logleft.classList.contains("l4"):
+      logleft.classList.remove("l4");
+      logleft.classList.add("l5");
+      break;
+
+    case logleft.classList.contains("l5"):
+      logleft.classList.remove("l5");
+      logleft.classList.add("l1");
+      break;
+  }
+}
+
+setInterval(autoMoveLogs, 1000);
