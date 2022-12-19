@@ -1,0 +1,14 @@
+.grid {
+    border: 1px solid black;
+    height:180px;
+    width:180px;
+    /* display and flex wrap are important for making sure the squares fit into the container */
+    display:flex; 
+    flex-wrap:wrap;
+}
+
+.grid div {
+    height:20px;
+    width: 20px;
+    /* this makes each "square" is 20 by 20 and there will be a 9x9 square grid */
+}
