@@ -1,3 +1,23 @@
-testing
-commit 1
-commit 2
+HTML
+
+build grid
+9 by 9 squares
+3rd row has logs going left
+4th row has logs going right
+6th row has cars going left
+7th row has cars going right
+ending block on first row middle column
+starting block on last row middle column
+
+STYLING
+
+style the grid to have borders
+give height and weight to the "container"
+each div in the grid has to be wrapped inside the container
+give a red and black colour to ending and starting blocks
+give logs div blue colour for the river
+give cars div dark gray colour for the road
+
+JS
+create and assign all important variables
+create function to move the frog
