@@ -15,15 +15,16 @@
 
 
 
-.c1
+.c1,
+.c5
 {
-    background-color: darkgoldenrod;
+    background-color:black;
 }
 
 .c2,
 .c3,
 .c4,
-.c5,
+/* .c5, */
 .c6 {
     background-color: darkgray;
 }
@@ -34,12 +35,10 @@
 }
 
 .starting-block {
-  background-color: black;
+  background-color: blue;
 }
 
-.frog {
-    background-color: green;
-}
+
 
 .l1,
 .l2,
@@ -50,4 +49,8 @@
 .l4,
 .l5 {
     background-color: blue;
+}
+
+.frog {
+  background-color: green;
 }

@@ -1,3 +1,5 @@
+Day 1
+
 HTML
 
 build grid
@@ -23,3 +25,9 @@ create and assign all important variables
 create function to move the frog
 create function to move the logs
 create function to move the cars
+
+
+Day 2
+
+create win and lose function
+add results and add a start/pause button

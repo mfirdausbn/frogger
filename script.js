@@ -6,9 +6,15 @@ const logsRight = document.querySelectorAll(".log-right");
 const carsLeft = document.querySelectorAll(".car-left");
 const carsRight = document.querySelectorAll(".car-right");
 
-console.log(squares); //this gives a layout of the array of squares
+const scoreDisplay = document.querySelector("#score");
+const timeLeftDisplay = document.querySelector("#time-left");
+
+//console.log(squares); //this gives a layout of the array of squares
 
 let currentIndex = 76; // this is 76 because this is the index of the starting block
+let currentTime = 30;
+let timerId;
+let outcomeTimerId;
 
 ////////////////////////////////////////////////////////////////////
 //CREATE FUNCTION TO MOVE FROG
@@ -45,6 +51,19 @@ function moveFrog(event) {
 }
 document.addEventListener("keyup", moveFrog);
 
+//////////////////////////////////////////////////////
+//combine all automoving elements into one function
+//////////////////////////////////////////////////////
+
+function autoMoveElements() {
+  logsLeft.forEach((logLeft) => moveLogLeft(logLeft));
+  logsRight.forEach((logRight) => moveLogRight(logRight));
+  carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
+  carsRight.forEach((carRight) => moveCarRight(carRight));
+  lose(); //check for lose
+  win();
+}
+
 ////////////////////////////////////////////////////////////////
 //CREATE FUNCTION TO MOVE LOGS
 ////////////////////////////////////////////////////////////////
@@ -53,11 +72,6 @@ document.addEventListener("keyup", moveFrog);
 // logs move by "cycling" classes from l1 to l5 changing from brown to blue
 // giving the effect of it moving to the left when it changes from l3 to l4
 // do the reverse for logsright
-
-function autoMoveLogs() {
-  logsLeft.forEach((logLeft) => moveLogLeft(logLeft));
-  logsRight.forEach((logRight) => moveLogRight(logRight));
-}
 
 function moveLogLeft(logLeft) {
   switch (true) {
@@ -117,16 +131,14 @@ function moveLogRight(logRight) {
   }
 }
 
-setInterval(autoMoveLogs, 1000);
-
 ////////////////////////////////////////////////////////////////
 //CREATE FUNCTION FOR CARS TO MOVE
 ////////////////////////////////////////////////////////////////
 
-function autoMoveCars() {
-  carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
-  carsRight.forEach((carRight) => moveCarRight(carRight));
-}
+// function autoMoveCars() {
+//   carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
+//   carsRight.forEach((carRight) => moveCarRight(carRight));
+// }
 
 function moveCarLeft(carLeft) {
   switch (true) {
@@ -187,10 +199,35 @@ function moveCarRight(carRight) {
       carRight.classList.remove("c5");
       carRight.classList.add("c4");
       break;
-      case carRight.classList.contains("c6"):
-        carRight.classList.remove("c6");
-        carRight.classList.add("c5");
-        break;
+    case carRight.classList.contains("c6"):
+      carRight.classList.remove("c6");
+      carRight.classList.add("c5");
+      break;
   }
 }
-setInterval(autoMoveCars, 1000);
+
+/////////////////////////////////////////////////////////
+//CREATE  WIN AND LOSE CONDITION
+////////////////////////////////////////////////////////
+
+function win() {
+  if (squares[currentIndex].classList.contains(".ending-block")) {
+    scoreDisplay.innerHTML = "ez";
+  }
+}
+
+function lose() {
+  if (
+    squares[currentIndex].classList.contains("c1") ||
+    squares[currentIndex].classList.contains("c5") ||
+    squares[currentIndex].classList.contains("l4") ||
+    squares[currentIndex].classList.contains("l5") ||
+    currentTime <= 0
+  ) {
+    scoreDisplay.innerHTML = "NOOB. you ded";
+    clearInterval(timerId); //stops the timer and game
+    squares[currentIndex].classList.remove("frog"); //remove frog from game
+  }
+}
+
+timerId = setInterval(autoMoveElements, 1000); //this code is to run the functions every 1 sec
