@@ -6,13 +6,15 @@ const logsRight = document.querySelectorAll(".log-right");
 const carsLeft = document.querySelectorAll(".car-left");
 const carsRight = document.querySelectorAll(".car-right");
 
-const scoreDisplay = document.querySelector("#score");
+const resultDisplay = document.querySelector("#result");
 const timeLeftDisplay = document.querySelector("#time-left");
+
+const startPauseBtn = document.querySelector("#start-pause-button");
 
 //console.log(squares); //this gives a layout of the array of squares
 
 let currentIndex = 76; // this is 76 because this is the index of the starting block
-let currentTime = 10;
+let currentTime = 30;
 let timerId;
 
 ////////////////////////////////////////////////////////////////////
@@ -48,7 +50,6 @@ function moveFrog(event) {
   }
   squares[currentIndex].classList.add("frog"); // makes the frog appear at the starting block
 }
-document.addEventListener("keyup", moveFrog);
 
 //////////////////////////////////////////////////////
 //combine all automoving elements into one function
@@ -61,8 +62,8 @@ function autoMoveElements() {
   logsRight.forEach((logRight) => moveLogRight(logRight));
   carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
   carsRight.forEach((carRight) => moveCarRight(carRight));
-  lose(); //check for lose
-  win();
+  // lose();
+  // win();
 }
 
 ////////////////////////////////////////////////////////////////
@@ -213,7 +214,7 @@ function moveCarRight(carRight) {
 
 function win() {
   if (squares[currentIndex].classList.contains("ending-block")) {
-    scoreDisplay.innerHTML = "ez";
+    resultDisplay.innerHTML = "ez";
     clearInterval(timerId);
   }
 }
@@ -226,10 +227,25 @@ function lose() {
     squares[currentIndex].classList.contains("l5") ||
     currentTime <= 0
   ) {
-    scoreDisplay.innerHTML = "NOOB. you ded";
+    resultDisplay.innerHTML = "NOOB. you ded";
     clearInterval(timerId); //stops the timer and game
     squares[currentIndex].classList.remove("frog"); //remove frog from game
   }
 }
 
-timerId = setInterval(autoMoveElements, 1000); //this code is to run the functions every 1 sec
+startPauseBtn.addEventListener("click", startOrPause);
+
+function startOrPause() {
+  if (timerId) {
+    // when game is paused
+    clearInterval(timerId);
+    document.removeEventListener("keyup", moveFrog);
+    timerId = null;
+  } else {
+    timerId = setInterval(autoMoveElements, 1000);
+    document.addEventListener("keyup", moveFrog); // this is shifted here so that frog only moves when start button is clicked
+  }
+}
+
+setInterval(win, 50);
+setInterval(lose, 50);
