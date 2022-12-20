@@ -12,9 +12,8 @@ const timeLeftDisplay = document.querySelector("#time-left");
 //console.log(squares); //this gives a layout of the array of squares
 
 let currentIndex = 76; // this is 76 because this is the index of the starting block
-let currentTime = 30;
+let currentTime = 10;
 let timerId;
-let outcomeTimerId;
 
 ////////////////////////////////////////////////////////////////////
 //CREATE FUNCTION TO MOVE FROG
@@ -56,6 +55,8 @@ document.addEventListener("keyup", moveFrog);
 //////////////////////////////////////////////////////
 
 function autoMoveElements() {
+  currentTime--; //makes timer go down by 1 sec
+  timeLeftDisplay.innerHTML = currentTime;
   logsLeft.forEach((logLeft) => moveLogLeft(logLeft));
   logsRight.forEach((logRight) => moveLogRight(logRight));
   carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
@@ -211,8 +212,9 @@ function moveCarRight(carRight) {
 ////////////////////////////////////////////////////////
 
 function win() {
-  if (squares[currentIndex].classList.contains(".ending-block")) {
+  if (squares[currentIndex].classList.contains("ending-block")) {
     scoreDisplay.innerHTML = "ez";
+    clearInterval(timerId);
   }
 }
 
