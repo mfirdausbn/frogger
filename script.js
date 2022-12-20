@@ -13,7 +13,7 @@ const startPauseBtn = document.querySelector("#start-pause-button");
 
 //console.log(squares); //this gives a layout of the array of squares
 
-let currentIndex = 76; // this is 76 because this is the index of the starting block
+let currentIndex = 112; // this is 76 because this is the index of the starting block
 let currentTime = 30;
 let timerId;
 
@@ -43,7 +43,7 @@ function moveFrog(event) {
       }
       break;
     case "ArrowDown":
-      if (currentIndex < 72) {
+      if (currentIndex < 108) {
         currentIndex += 9;
       }
       break;
@@ -247,5 +247,5 @@ function startOrPause() {
   }
 }
 
-setInterval(win, 50);
-setInterval(lose, 50);
+setInterval(win, 10);
+setInterval(lose, 10);
