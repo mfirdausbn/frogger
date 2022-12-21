@@ -14,7 +14,7 @@ const startPauseBtn = document.querySelector("#start-pause-button");
 //console.log(squares); //this gives a layout of the array of squares
 
 let currentIndex = 112; // this is 76 because this is the index of the starting block
-let currentTime = 30;
+let currentTime = 300;
 let timerId;
 
 ////////////////////////////////////////////////////////////////////
@@ -56,14 +56,19 @@ function moveFrog(event) {
 //////////////////////////////////////////////////////
 
 function autoMoveElements() {
-  currentTime--; //makes timer go down by 1 sec
-  timeLeftDisplay.innerHTML = currentTime;
+  // currentTime--; //makes timer go down by 1 sec
+  // timeLeftDisplay.innerHTML = currentTime;
   logsLeft.forEach((logLeft) => moveLogLeft(logLeft));
   logsRight.forEach((logRight) => moveLogRight(logRight));
   carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
   carsRight.forEach((carRight) => moveCarRight(carRight));
   // lose();
   // win();
+}
+
+function timerCountdown() {
+  currentTime--
+  timeLeftDisplay.innerHTML =currentTime;
 }
 
 ////////////////////////////////////////////////////////////////
@@ -137,10 +142,6 @@ function moveLogRight(logRight) {
 //CREATE FUNCTION FOR CARS TO MOVE
 ////////////////////////////////////////////////////////////////
 
-// function autoMoveCars() {
-//   carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
-//   carsRight.forEach((carRight) => moveCarRight(carRight));
-// }
 
 function moveCarLeft(carLeft) {
   switch (true) {
@@ -214,8 +215,9 @@ function moveCarRight(carRight) {
 
 function win() {
   if (squares[currentIndex].classList.contains("ending-block")) {
-    resultDisplay.innerHTML = "ez";
+    resultDisplay.innerHTML = "Yumz";
     clearInterval(timerId);
+    document.removeEventListener("keyup", moveFrog);
   }
 }
 
@@ -230,6 +232,7 @@ function lose() {
     resultDisplay.innerHTML = "NOOB. you ded";
     clearInterval(timerId); //stops the timer and game
     squares[currentIndex].classList.remove("frog"); //remove frog from game
+    document.removeEventListener("keyup", moveFrog); //remove movement of frog
   }
 }
 
@@ -242,9 +245,10 @@ function startOrPause() {
     document.removeEventListener("keyup", moveFrog);
     timerId = null;
   } else {
-    timerId = setInterval(autoMoveElements, 1000);
+    timerId = setInterval(autoMoveElements, 500);
+    setInterval(timerCountdown,1000)
     document.addEventListener("keyup", moveFrog); // this is shifted here so that frog only moves when start button is clicked
-  }
+    }
 }
 
 setInterval(win, 10);

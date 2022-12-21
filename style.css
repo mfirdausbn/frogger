@@ -11,15 +11,12 @@
   height: 40px;
   width: 40px;
 
-  /* this makes each "square" is 20 by 20 and there will be a 9x9 square grid */
+  /* this makes each "square" is 40 by 40 and there will be a 9x13  grid */
 }
 
-
-
 .c1,
-.c5
-{
-    background-color:black;
+.c5 {
+  background-color: black;
 }
 
 .c2,
@@ -27,32 +24,56 @@
 .c4,
 /* .c5, */
 .c6 {
-    background-color: darkgray;
+  background-color: rgba(184, 201, 208, 255);
 }
 
-
 .ending-block {
-  background-color: red;
+  background-image: url(/images/dragonfly.png);
 }
 
 .starting-block {
-  background-color: blue;
+  background-color: #00ba0c;
 }
 
-
-
-.l1,
-.l2,
-.l3 {
-    background-color: brown;
+.grass {
+  background-color: #00ba0c;
 }
 
 .l4,
 .l5 {
-    background-color: blue;
+  background-color: rgba(81, 111, 253, 255);
+}
+
+/* ////////////////////////////////////////////////////////////// */
+
+.l1 {
+  background-image: url(/images/leftLog.png);
+  z-index: 1;
+}
+.l2 {
+  background-image: url(/images/middleLog.png);
+  z-index: 1;
+}
+.l3 {
+  background-image: url(/images/rightLog.png);
+  z-index: 1;
+}
+
+.road {
+  background-color: rgba(184, 201, 208, 255);
+}
+
+.c1,
+.c5 {
+  background-image: url(/images/redCarGoingRight.png);
+}
+
+.car-left.c1,
+.car-left.c5 {
+  background-image: url(/images/redCarGoingLeft.png);
 }
 
 .frog {
-  background-color: green;
+  background-image: url(/images/bigFroggy.png);
+  z-index: 2;
 }
-
