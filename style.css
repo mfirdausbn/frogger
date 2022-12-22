@@ -63,14 +63,21 @@
   background-color: rgba(184, 201, 208, 255);
 }
 
-.c1,
-.c5 {
+.car-right.c1,
+.car-right.c5 {
   background-image: url(/images/redCarGoingRight.png);
 }
 
 .car-left.c1,
 .car-left.c5 {
   background-image: url(/images/redCarGoingLeft.png);
+}
+
+.snake-left.s1{
+  background-image: url(/images/snekLeft.png);
+}
+.snake-right.s1{
+  background-image: url(/images/snekRight.png);
 }
 
 .frog {

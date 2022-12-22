@@ -5,6 +5,8 @@ const logsLeft = document.querySelectorAll(".log-left");
 const logsRight = document.querySelectorAll(".log-right");
 const carsLeft = document.querySelectorAll(".car-left");
 const carsRight = document.querySelectorAll(".car-right");
+const snakesLeft = document.querySelectorAll(".snake-left");
+const snakesRight = document.querySelectorAll(".snake-right");
 
 const resultDisplay = document.querySelector("#result");
 const timeLeftDisplay = document.querySelector("#time-left");
@@ -62,13 +64,15 @@ function autoMoveElements() {
   logsRight.forEach((logRight) => moveLogRight(logRight));
   carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
   carsRight.forEach((carRight) => moveCarRight(carRight));
+  snakesLeft.forEach((snakeLeft) => moveSnakeLeft(snakeLeft));
+  snakesRight.forEach((snakeRight) => moveSnakeRight(snakeRight));
   // lose();
   // win();
 }
 
 function timerCountdown() {
-  currentTime--
-  timeLeftDisplay.innerHTML =currentTime;
+  currentTime--;
+  timeLeftDisplay.innerHTML = currentTime;
 }
 
 ////////////////////////////////////////////////////////////////
@@ -142,7 +146,6 @@ function moveLogRight(logRight) {
 //CREATE FUNCTION FOR CARS TO MOVE
 ////////////////////////////////////////////////////////////////
 
-
 function moveCarLeft(carLeft) {
   switch (true) {
     case carLeft.classList.contains("c1"):
@@ -209,6 +212,48 @@ function moveCarRight(carRight) {
   }
 }
 
+////////////////////////////////////////////////////////////////
+//CREATE FUNCTION FOR SNAKE TO MOVE
+////////////////////////////////////////////////////////////////
+
+function moveSnakeLeft(snakeLeft) {
+  switch (true) {
+    case snakeLeft.classList.contains("s1"):
+      snakeLeft.classList.remove("s1");
+      snakeLeft.classList.add("s2");
+      break;
+
+    case snakeLeft.classList.contains("s2"):
+      snakeLeft.classList.remove("s2");
+      snakeLeft.classList.add("s3");
+      break;
+
+    case snakeLeft.classList.contains("s3"):
+      snakeLeft.classList.remove("s3");
+      snakeLeft.classList.add("s1");
+      break;
+  }
+}
+
+function moveSnakeRight(snakeRight) {
+  switch (true) {
+    case snakeRight.classList.contains("s1"):
+      snakeRight.classList.remove("s1");
+      snakeRight.classList.add("s3");
+      break;
+
+    case snakeRight.classList.contains("s2"):
+      snakeRight.classList.remove("s2");
+      snakeRight.classList.add("s1");
+      break;
+
+    case snakeRight.classList.contains("s3"):
+      snakeRight.classList.remove("s3");
+      snakeRight.classList.add("s2");
+      break;
+  }
+}
+
 /////////////////////////////////////////////////////////
 //CREATE  WIN AND LOSE CONDITION
 ////////////////////////////////////////////////////////
@@ -227,6 +272,8 @@ function lose() {
     squares[currentIndex].classList.contains("c5") ||
     squares[currentIndex].classList.contains("l4") ||
     squares[currentIndex].classList.contains("l5") ||
+    squares[currentIndex].classList.contains("s1") ||
+    
     currentTime <= 0
   ) {
     resultDisplay.innerHTML = "NOOB. you ded";
@@ -245,10 +292,10 @@ function startOrPause() {
     document.removeEventListener("keyup", moveFrog);
     timerId = null;
   } else {
-    timerId = setInterval(autoMoveElements, 500);
-    setInterval(timerCountdown,1000)
+    timerId = setInterval(autoMoveElements, 1000);
+    setInterval(timerCountdown, 1000);
     document.addEventListener("keyup", moveFrog); // this is shifted here so that frog only moves when start button is clicked
-    }
+  }
 }
 
 setInterval(win, 10);
