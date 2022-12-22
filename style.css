@@ -14,20 +14,14 @@
   /* this makes each "square" is 40 by 40 and there will be a 9x13  grid */
 }
 
-.c1,
-.c5 {
-  background-color: black;
-}
-
 .c2,
 .c3,
 .c4,
-/* .c5, */
 .c6 {
   background-color: rgba(184, 201, 208, 255);
 }
 
-.ending-block {
+.dragonfly {
   background-image: url(/images/dragonfly.png);
 }
 
@@ -42,9 +36,7 @@
 .l4,
 .l5 {
   background-color: rgba(81, 111, 253, 255);
-}
-
-/* ////////////////////////////////////////////////////////////// */
+} 
 
 .l1 {
   background-image: url(/images/leftLog.png);

@@ -1,4 +1,6 @@
-// assign variables
+///////////////////////////////////////////////////////////////////
+////////////////////// assign variables////////////////////////////
+///////////////////////////////////////////////////////////////////
 
 const squares = document.querySelectorAll(".grid div");
 const logsLeft = document.querySelectorAll(".log-left");
@@ -7,30 +9,26 @@ const carsLeft = document.querySelectorAll(".car-left");
 const carsRight = document.querySelectorAll(".car-right");
 const snakesLeft = document.querySelectorAll(".snake-left");
 const snakesRight = document.querySelectorAll(".snake-right");
-
 const resultDisplay = document.querySelector("#result");
 const timeLeftDisplay = document.querySelector("#time-left");
-
 const startPauseBtn = document.querySelector("#start-pause-button");
 
-//console.log(squares); //this gives a layout of the array of squares
-
-let currentIndex = 112; // this is 76 because this is the index of the starting block
-let currentTime = 300;
-let timerId;
+let currentIndex = 112; // this is the index of the starting block
+let currentTime = 20;
+let timerId; // this variable is needed to allow game to start/pause and move/stop elements
 
 ////////////////////////////////////////////////////////////////////
-//CREATE FUNCTION TO MOVE FROG
-/////////////////////////////////////////////////////////////////////
+////////////////CREATE FUNCTION TO MOVE FROG////////////////////////
+////////////////////////////////////////////////////////////////////
 
 function moveFrog(event) {
-  //this line of code is to remove the previous position of frog otherwise it will look like a snake
+  // remove the previous position of frog otherwise it will look like a snake
   squares[currentIndex].classList.remove("frog");
 
   switch (event.key) {
     case "ArrowLeft":
       if (currentIndex % 9 !== 0) {
-        //this if statement is to prevent the square from moving left at the left border
+        //this if statement prevents frog from moving left at the left border
         currentIndex--; //makes frog move left
       }
       break;
@@ -50,62 +48,57 @@ function moveFrog(event) {
       }
       break;
   }
-  squares[currentIndex].classList.add("frog"); // makes the frog appear at the starting block
+  squares[currentIndex].classList.add("frog"); // makes frog appear at the starting block
 }
 
-//////////////////////////////////////////////////////
-//combine all automoving elements into one function
-//////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+////////////COMBINE ALL MOVING ELEMENTS INTO ONE FUNCTION////////////////
+/////////////////////////////////////////////////////////////////////////
 
 function autoMoveElements() {
-  // currentTime--; //makes timer go down by 1 sec
-  // timeLeftDisplay.innerHTML = currentTime;
   logsLeft.forEach((logLeft) => moveLogLeft(logLeft));
   logsRight.forEach((logRight) => moveLogRight(logRight));
   carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
   carsRight.forEach((carRight) => moveCarRight(carRight));
   snakesLeft.forEach((snakeLeft) => moveSnakeLeft(snakeLeft));
   snakesRight.forEach((snakeRight) => moveSnakeRight(snakeRight));
-  // lose();
-  // win();
 }
 
 function timerCountdown() {
   currentTime--;
   timeLeftDisplay.innerHTML = currentTime;
+  if (currentTime <= 0) {
+    timeLeftDisplay.innerHTML = 0;
+  }
 }
 
 ////////////////////////////////////////////////////////////////
-//CREATE FUNCTION TO MOVE LOGS
+//////////////CREATE FUNCTION TO MOVE ELEMENTS//////////////////
 ////////////////////////////////////////////////////////////////
-// each log now has a class of l1 to l5. l1,l2 and l3, will have a brown colour
-// l4 and l5 will have a blue back ground.
+// each log has a class of l1 to l5. l1-l3 contains img of log
+// l4 and l5 will have a blue back ground representing water
 // logs move by "cycling" classes from l1 to l5 changing from brown to blue
-// giving the effect of it moving to the left when it changes from l3 to l4
+// giving the effect of it moving to the left
 // do the reverse for logsright
 
 function moveLogLeft(logLeft) {
   switch (true) {
-    case logLeft.classList.contains("l1"): //check if that square contains l1
-      logLeft.classList.remove("l1"); //remove this l1 class
-      logLeft.classList.add("l2"); //add this l2 class
+    case logLeft.classList.contains("l1"):
+      logLeft.classList.remove("l1");
+      logLeft.classList.add("l2");
       break;
-
     case logLeft.classList.contains("l2"):
       logLeft.classList.remove("l2");
       logLeft.classList.add("l3");
       break;
-
     case logLeft.classList.contains("l3"):
       logLeft.classList.remove("l3");
       logLeft.classList.add("l4");
       break;
-
     case logLeft.classList.contains("l4"):
       logLeft.classList.remove("l4");
       logLeft.classList.add("l5");
       break;
-
     case logLeft.classList.contains("l5"):
       logLeft.classList.remove("l5");
       logLeft.classList.add("l1");
@@ -115,26 +108,22 @@ function moveLogLeft(logLeft) {
 
 function moveLogRight(logRight) {
   switch (true) {
-    case logRight.classList.contains("l1"): //check if that square contains l1
-      logRight.classList.remove("l1"); //remove this l1 class
-      logRight.classList.add("l5"); //add this l5 class
+    case logRight.classList.contains("l1"):
+      logRight.classList.remove("l1");
+      logRight.classList.add("l5");
       break;
-
     case logRight.classList.contains("l2"):
       logRight.classList.remove("l2");
       logRight.classList.add("l1");
       break;
-
     case logRight.classList.contains("l3"):
       logRight.classList.remove("l3");
       logRight.classList.add("l2");
       break;
-
     case logRight.classList.contains("l4"):
       logRight.classList.remove("l4");
       logRight.classList.add("l3");
       break;
-
     case logRight.classList.contains("l5"):
       logRight.classList.remove("l5");
       logRight.classList.add("l4");
@@ -142,32 +131,24 @@ function moveLogRight(logRight) {
   }
 }
 
-////////////////////////////////////////////////////////////////
-//CREATE FUNCTION FOR CARS TO MOVE
-////////////////////////////////////////////////////////////////
-
 function moveCarLeft(carLeft) {
   switch (true) {
     case carLeft.classList.contains("c1"):
       carLeft.classList.remove("c1");
       carLeft.classList.add("c2");
       break;
-
     case carLeft.classList.contains("c2"):
       carLeft.classList.remove("c2");
       carLeft.classList.add("c3");
       break;
-
     case carLeft.classList.contains("c3"):
       carLeft.classList.remove("c3");
       carLeft.classList.add("c4");
       break;
-
     case carLeft.classList.contains("c4"):
       carLeft.classList.remove("c4");
       carLeft.classList.add("c5");
       break;
-
     case carLeft.classList.contains("c5"):
       carLeft.classList.remove("c5");
       carLeft.classList.add("c6");
@@ -181,26 +162,22 @@ function moveCarLeft(carLeft) {
 
 function moveCarRight(carRight) {
   switch (true) {
-    case carRight.classList.contains("c1"): //check if that square contains l1
-      carRight.classList.remove("c1"); //remove this l1 class
-      carRight.classList.add("c6"); //add this l5 class
+    case carRight.classList.contains("c1"):
+      carRight.classList.remove("c1");
+      carRight.classList.add("c6");
       break;
-
     case carRight.classList.contains("c2"):
       carRight.classList.remove("c2");
       carRight.classList.add("c1");
       break;
-
     case carRight.classList.contains("c3"):
       carRight.classList.remove("c3");
       carRight.classList.add("c2");
       break;
-
     case carRight.classList.contains("c4"):
       carRight.classList.remove("c4");
       carRight.classList.add("c3");
       break;
-
     case carRight.classList.contains("c5"):
       carRight.classList.remove("c5");
       carRight.classList.add("c4");
@@ -212,22 +189,16 @@ function moveCarRight(carRight) {
   }
 }
 
-////////////////////////////////////////////////////////////////
-//CREATE FUNCTION FOR SNAKE TO MOVE
-////////////////////////////////////////////////////////////////
-
 function moveSnakeLeft(snakeLeft) {
   switch (true) {
     case snakeLeft.classList.contains("s1"):
       snakeLeft.classList.remove("s1");
       snakeLeft.classList.add("s2");
       break;
-
     case snakeLeft.classList.contains("s2"):
       snakeLeft.classList.remove("s2");
       snakeLeft.classList.add("s3");
       break;
-
     case snakeLeft.classList.contains("s3"):
       snakeLeft.classList.remove("s3");
       snakeLeft.classList.add("s1");
@@ -241,12 +212,10 @@ function moveSnakeRight(snakeRight) {
       snakeRight.classList.remove("s1");
       snakeRight.classList.add("s3");
       break;
-
     case snakeRight.classList.contains("s2"):
       snakeRight.classList.remove("s2");
       snakeRight.classList.add("s1");
       break;
-
     case snakeRight.classList.contains("s3"):
       snakeRight.classList.remove("s3");
       snakeRight.classList.add("s2");
@@ -255,14 +224,15 @@ function moveSnakeRight(snakeRight) {
 }
 
 /////////////////////////////////////////////////////////
-//CREATE  WIN AND LOSE CONDITION
+/////////////CREATE  WIN AND LOSE CONDITION/////////////
 ////////////////////////////////////////////////////////
 
 function win() {
-  if (squares[currentIndex].classList.contains("ending-block")) {
+  if (squares[currentIndex].classList.contains("dragonfly")) {
     resultDisplay.innerHTML = "Yumz";
-    clearInterval(timerId);
+    clearInterval(timerId); //stops elements from moving
     document.removeEventListener("keyup", moveFrog);
+    currentTime = 21;
   }
 }
 
@@ -273,7 +243,6 @@ function lose() {
     squares[currentIndex].classList.contains("l4") ||
     squares[currentIndex].classList.contains("l5") ||
     squares[currentIndex].classList.contains("s1") ||
-    
     currentTime <= 0
   ) {
     resultDisplay.innerHTML = "NOOB. you ded";
@@ -292,9 +261,11 @@ function startOrPause() {
     document.removeEventListener("keyup", moveFrog);
     timerId = null;
   } else {
-    timerId = setInterval(autoMoveElements, 1000);
-    setInterval(timerCountdown, 1000);
+    squares[currentIndex].classList.add("frog");
+    timerId = setInterval(autoMoveElements, 600); // set speed of elements moving
+    setInterval(timerCountdown, 1000);            // timer interval set to 1 sec
     document.addEventListener("keyup", moveFrog); // this is shifted here so that frog only moves when start button is clicked
+    console.log(timerId);
   }
 }
 
