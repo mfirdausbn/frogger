@@ -14,13 +14,6 @@
   /* this makes each "square" is 40 by 40 and there will be a 9x13  grid */
 }
 
-.c2,
-.c3,
-.c4,
-.c6 {
-  background-color: rgba(184, 201, 208, 255);
-}
-
 .dragonfly {
   background-image: url(/images/dragonfly.png);
 }
@@ -40,29 +33,26 @@
 
 .l1 {
   background-image: url(/images/leftLog.png);
-  z-index: 1;
 }
 .l2 {
   background-image: url(/images/middleLog.png);
-  z-index: 1;
 }
 .l3 {
   background-image: url(/images/rightLog.png);
-  z-index: 1;
 }
 
 .road {
-  background-color: rgba(184, 201, 208, 255);
+  background-color: #505050;
 }
 
 .car-right.c1,
 .car-right.c5 {
-  background-image: url(/images/redCarGoingRight.png);
+  background-image: url(/images/redBusRight.png);
 }
 
 .car-left.c1,
 .car-left.c5 {
-  background-image: url(/images/redCarGoingLeft.png);
+  background-image: url(/images/redBusLeft.png);
 }
 
 .snake-left.s1{

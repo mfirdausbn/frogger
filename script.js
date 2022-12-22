@@ -269,5 +269,5 @@ function startOrPause() {
   }
 }
 
-setInterval(win, 10);
+setInterval(win, 10); //checks for win every 0.01 sec
 setInterval(lose, 10);
